@@ -1,4 +1,5 @@
 const fs = require("fs"); // Importing fs to allow us to use it.
+const { userInfo } = require("os");
 const readline = require('readline-sync');  // Import readline-sync for synchronous input
 
 
@@ -67,7 +68,7 @@ function getPasswordFromUser() {
         console.log("Your password is strong.");
     } else {
         console.log("Password does not meet the criteria. Please enter a different password.");
-        getPasswordFromUser();  
+        getPasswordFromUser(); 
     }
 }
 
@@ -75,11 +76,23 @@ function getPasswordFromUser() {
 
 const outputFile = "./checking_password_log.txt";
 
-// Enter code to read in the 25 most common passwords from the text file here.
-getPasswordFromUser();
+const inputFile = "./common_passwords.txt";
+const data = fs.readFileSync(inputFile, "utf-8");
+const lines = data.split(/\n/);
 
 
+userInput = readline.question("Enter a Number:")
+if (lines.includes(userInput)){
+console.log("It is in the array.")
+}else{
+  console.log("Not in the array")
+}
+
+// console.log(lines)
 
 
+// const scrammble = "./entered_Passwords.txt"
+// let shuffled = lines.sort(function(){return 0.5-Math.random()}).join('');
+// const data2 = fs.writeFileSync(outputFile,scrammble, shuffled, "Hello*123", "utf-8")
 
-
+// console.log(data2)
